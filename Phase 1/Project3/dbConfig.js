@@ -1,11 +1,11 @@
 module.exports = {
-  user: "rebirth666",
-  password: "orange007",
-  server: "localhost",
-  database: "fullstack_grind",
+  user: "",
+  password: "",
+  server: "",
+  database: "",
   trustServerCertificate: true,
   options: {
-    port: parseInt(1433), // Default SQL Server port
+    port: parseInt(), // Default SQL Server port
     connectionTimeout: 6000, // Connection timeout in milliseconds
   }
 };
