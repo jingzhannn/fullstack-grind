@@ -3,7 +3,7 @@ BEGIN
 	DROP TABLE Universities
 END
 
-CREATE TABLE Universities (
+CREATE TABLE Universities (	
  id INT IDENTITY(1,1) PRIMARY KEY,
  uni_name VARCHAR(225) NULL,
  uni_acronym VARCHAR(5) NULL

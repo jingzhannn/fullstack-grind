@@ -22,7 +22,7 @@ app.get('/hobbies', (req, res) => {
 
 app.get('/food', (req, res) => {
   res.send("Chicken");
-})
+})  
 
 app.get('/student', (req, res) => {
   const profile = {
