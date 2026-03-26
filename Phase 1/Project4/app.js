@@ -4,14 +4,17 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const notesController = require("./Controllers/notesController")
+const notesController = require("./Controllers/notesController");
+const { validateNotes } = require("./Middlewares/notesMiddleware");
 
 const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/notes", notesController.getNotes);
+app.post("/notes", validateNotes, notesController.createNotes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);

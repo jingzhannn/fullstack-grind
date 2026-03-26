@@ -10,6 +10,17 @@ async function getNotes(req, res){
     }
 }
 
+async function createNotes(req, res) {
+    try{
+        const newNote = await notesModel.createNotes(req.body);
+        res.status(201).json(newNote);
+    } catch (err) {
+        console.error("Controller Error", err);
+        res.status(500).json({ error: "Error Creating Note"});
+    } 
+}
+
 module.exports = {
-    getNotes
+    getNotes,
+    createNotes
 }

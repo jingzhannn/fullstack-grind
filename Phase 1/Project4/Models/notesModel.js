@@ -21,6 +21,30 @@ async function getNotes(){
     }
 }
 
+async function createNotes(newText){
+    let connection;
+    try{
+        connection = await sql.connect(dbConfig);
+        const sqlQuery = `INSERT INTO Notes (notes) OUTPUT INSERTED.* VALUES (@note)`;
+        const request = connection.request();
+        request.input("note", newText.note);
+        const result = await request.query(sqlQuery);
+        return result.recordset;
+    } catch (err) {
+        console.error("Database Error", err);
+        throw err;
+    } finally {
+        if (connection){
+            try{
+                await connection.close();
+            } catch (closeError) {
+                console.error ("Error Closing Database", closeError);
+            }
+        }
+    }
+}
+
 module.exports = {
-    getNotes
+    getNotes,
+    createNotes
 }
