@@ -9,7 +9,7 @@ const notesSchema = Joi.object({
 });
 
 function validateNotes(req, res, next){
-    const { error } = notesSchema.validate(req.body, { abortEarly: false});
+    const { error } = notesSchema.validate(req.body, { abortEarly: false });
 
     if (error) {
         const errorMessage = error.details.map((details) => details.message).join(", ");
@@ -19,6 +19,18 @@ function validateNotes(req, res, next){
     next();
 }
 
+function validateIndex(req, res, next){
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id) || id <=0 ){
+        return res.status(400)
+                  .json({ error: "Invalid book ID. ID must be a positive number" });
+    }
+
+    next();
+}
+
 module.exports = {
-    validateNotes
+    validateNotes,
+    validateIndex
 }

@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const notesController = require("./Controllers/notesController");
-const { validateNotes } = require("./Middlewares/notesMiddleware");
+const { validateNotes, validateIndex } = require("./Middlewares/notesMiddleware");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/notes", notesController.getNotes);
 app.post("/notes", validateNotes, notesController.createNotes);
+app.delete("/notes/:id", validateIndex, notesController.deleteNotes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);

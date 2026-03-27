@@ -44,7 +44,32 @@ async function createNotes(newText){
     }
 }
 
+async function deleteNotes(notesId){
+    let connection;
+    try{
+        connection = await sql.connect(dbConfig);
+        const sqlQuery = `DELETE FROM Notes OUTPUT DELETED.* WHERE id = @id`;
+        const request = connection.request();
+        request.input("id", notesId);
+        const result = await request.query(sqlQuery);
+        return result.recordset[0] || null;
+    } catch (err){
+        console.error("Database Error: ", err);
+        throw err;
+    } finally{
+        if (connection) {
+            try{
+                await connection.close();
+            } catch (closeError) {
+                console.error("Error Closing Databse: ", closeError);
+                throw closeError;
+            }
+        }
+    }
+}
+
 module.exports = {
     getNotes,
-    createNotes
+    createNotes,
+    deleteNotes
 }
