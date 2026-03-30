@@ -12,7 +12,7 @@ CREATE TABLE Notes(
 INSERT INTO Notes(notes)
 OUTPUT INSERTED.*
 VALUES
-	('The Fall at Dawn''s Rise'),
+	('The Fall at Dawn''s Rise'),		
 	('For the Sun is Set to Die'),
 	('As Tomorrow Became Yesterday'),
 	('The Dream Yet to Be Dreamed');
