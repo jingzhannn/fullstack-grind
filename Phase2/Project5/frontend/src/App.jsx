@@ -1,12 +1,14 @@
-import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import LoginCard from './components/loginCard'
-import Allbooks from './pages/allbooks'
+import SignUp from './pages/signup'
 
 export const App = () => {
   return (
-    <div>
-        <Allbooks />
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<LoginCard />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
   )
 }
 
