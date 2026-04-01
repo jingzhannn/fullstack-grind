@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './loginCard.css'
+import './auth.css'
 
-const LoginCard = () => {
-  const [email, setEmail] = useState('')
+const Login = () => {
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log({ email, password })
+    console.log({ username, password })
   }
 
   return (
@@ -17,13 +17,13 @@ const LoginCard = () => {
         <h1 className="login-title">Log In</h1>
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <label className="sr-only" htmlFor="email">Email</label>
+          <label className="sr-only" htmlFor="username">Username</label>
           <input
-            id="email"
-            type="email"
-            placeholder="Your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="username"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
 
@@ -51,4 +51,4 @@ const LoginCard = () => {
   )
 }
 
-export default LoginCard
+export default Login

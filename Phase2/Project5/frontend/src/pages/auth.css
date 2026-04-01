@@ -99,6 +99,13 @@
 	font-size: 0.9rem;
 }
 
+.auth-error {
+	margin: 0.12rem 0 0;
+	font-size: 0.86rem;
+	font-weight: 600;
+	color: #ba1a1a;
+}
+
 .forgot-link,
 .signup-link {
 	background: none;
