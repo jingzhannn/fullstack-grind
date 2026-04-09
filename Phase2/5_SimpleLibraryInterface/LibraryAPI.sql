@@ -57,5 +57,3 @@ VALUES
 	('The Lean Startup', 'Eric Ries', 1),
 	('Zero to One', 'Peter Thiel', 1),
 	('Cracking the Coding Interview', 'Gayle Laakmann McDowell', 1);
-
-SELECT * FROM Books

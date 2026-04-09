@@ -6,6 +6,7 @@ const cors = require('cors')
 dotenv.config();
 
 const booksController = require('./Controllers/booksController');
+const usersController = require('./Controllers/usersController');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/allbooks", booksController.getAllBooks);
+app.post("/createUser", usersController.createUser);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on PORT ${PORT}`)
