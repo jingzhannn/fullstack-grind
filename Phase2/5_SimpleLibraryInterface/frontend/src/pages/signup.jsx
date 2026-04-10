@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './auth.css'
+import axios from 'axios'
 
 const SignUp = () => {
   const [username, setUsername] = useState('')
@@ -8,7 +9,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     if (password !== confirmPassword) {
@@ -16,8 +17,16 @@ const SignUp = () => {
       return
     }
 
-    setError('')
-    console.log({ username, password })
+    try{
+      const res = await axios.post("http://localhost:3000/createUser", {
+        username: username,
+        password: password
+      });
+      console.log({ "message": "Account Created Successfully", 'data': res.data });
+    } catch (err){
+      setError(err);
+      console.error({'message': 'Account Creation Unsuccessful', 'Error': err});  
+    }
   }
 
   return (
