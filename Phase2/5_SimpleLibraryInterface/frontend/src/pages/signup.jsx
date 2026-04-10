@@ -7,10 +7,13 @@ const SignUp = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
+  const [error, setError] = useState("Account Created Successfully")
 
   async function handleSubmit(e) {
     e.preventDefault()
+
+    let isSuccess = false;
+    let message = "User Created Successfully";
 
     if (password !== confirmPassword) {
       setError('Passwords do not match.')
@@ -25,8 +28,11 @@ const SignUp = () => {
       console.log({ "message": "Account Created Successfully", 'data': res.data });
     } catch (err){
       setError(err);
+      message = err;
       console.error({'message': 'Account Creation Unsuccessful', 'Error': err});  
     }
+
+    alert(message);
   }
 
   return (
@@ -67,16 +73,8 @@ const SignUp = () => {
             minLength={8}
           />
 
-          {error ? <p className="auth-error" role="alert">{error}</p> : null}
-
           <button type="submit">Create Account</button>
         </form>
-
-        <div className="login-meta">
-          <p>
-            Already have an account? <Link to="/login" className="signup-link">Log in</Link>
-          </p>
-        </div>
       </section>
     </main>
   )
